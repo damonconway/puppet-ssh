@@ -6,11 +6,21 @@ ssh
 1. [Overview - What is the ssh module?](#overview)
 2. [Dependencies](#dependencies)
 3. [Usage - How to use and configure the module](#usage)
-4. [Implementation - An under-the-hood peek at what the module is doing](#implementation)
-5. [Limitations - OS compatibility, etc.](#limitations)
+4. [Limitations - OS compatibility, etc.](#limitations)
 
 Overview
 --------
+
+** This module is under development and untested. Use at your own risk. **
+
+The ssh module is designed to manage the ssh packages and service, and leave the configuration to herculesteam/augeasproviders_ssh. However, if you pass in one or more of the config hashes, the module will use create_resources to pass the hash along to the matching resource provided by herculesteam/augeasproviders_ssh.
+
+Currently, the module supports passing a config hash to the following 4 resources:
+
+  * ssh_config
+  * sshd_config
+  * ssh_config_match
+  * sshd_config_match
 
 Dependencies
 ------------
@@ -64,9 +74,6 @@ To pass some configuration options do:
       ssh_config  => $ssh_cfg
       sshd_config => $sshd_cfg
     }
-
-Implementation
---------------
 
 Limitations
 -----------

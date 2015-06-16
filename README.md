@@ -11,7 +11,7 @@ ssh
 Overview
 --------
 
-** This module is under development and untested. Use at your own risk. **
+**This module is under development and untested. Use at your own risk.**
 
 The ssh module is designed to manage the ssh packages and service, and leave the configuration to herculesteam/augeasproviders_ssh. However, if you pass in one or more of the config hashes, the module will use create_resources to pass the hash along to the matching resource provided by herculesteam/augeasproviders_ssh.
 
@@ -78,6 +78,6 @@ To pass some configuration options do:
 Limitations
 -----------
 
-** Supported Operating Systems **
+**Supported Operating Systems**
 
   * RHEL/CentOS 5,6

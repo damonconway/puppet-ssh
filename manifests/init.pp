@@ -94,10 +94,10 @@ class ssh (
   $sshd_config_match = $ssh::params::sshd_config_match,
 ) inherits ssh::params {
 
-  contain ssh::install
-  contain ssh::service
-  contain ssh::ssh_cfg
-  contain ssh::sshd_cfg
+  include ssh::install
+  include ssh::service
+  include ssh::ssh_cfg
+  include ssh::sshd_cfg
 
   $defaults     = $ssh::params::defaults
   $service_name = $ssh::params::service_name

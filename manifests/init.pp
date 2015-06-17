@@ -101,41 +101,7 @@ class ssh (
 
   $service_name = $ssh::params::service_name
 
-  # Check all our inputs
-  #
-  if is_bool($config_manage) {
-    $real_config_manage = $config_manage
-  } elsif is_string($config_manage) {
-    $real_config_manage = str2bool($config_manage)
-  } else {
-    fail("${name}::config_manage should be a boolean or string.")
-  }
- 
-  if is_bool($install_manage) {
-    $real_install_manage = $install_manage
-  } elsif is_string($install_manage) {
-    $real_install_manage = str2bool($install_manage)
-  } else {
-    fail("${name}::install_manage should be a boolean or string.")
-  }
- 
-  if is_bool($service_manage) {
-    $real_service_manage = $service_manage
-  } elsif is_string($service_manage) {
-    $real_service_manage = str2bool($service_manage)
-  } else {
-    fail("${name}::serivce_manage should be a boolean or string.")
-  }
-
-  if is_bool($service_notify) {
-    $real_service_notify = $service_manage
-  } elsif is_string($service_notify) {
-    $real_service_notify = str2bool($service_manage)
-  } else {
-    fail("${name}::serivce_notify should be a boolean or string.")
-  }
-
-  if $real_service_notify {
+  if str2bool($service_notify) {
     $defaults = {}
   } else {
     $defaults = $ssh::params::defaults

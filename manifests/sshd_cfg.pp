@@ -16,13 +16,12 @@
 #
 class ssh::sshd_cfg {
 
-  $config_manage     = $ssh::real_config_manage
+  $config_manage     = $ssh::config_manage
   $defaults          = $ssh::defaults
   $sshd_config       = $ssh::sshd_config
   $sshd_config_match = $ssh::sshd_config_match
 
-
-  if $config_manage == true {
+  if str2bool($config_manage) {
     if is_hash($sshd_config) {
       create_resources('sshd_config', $sshd_config, $defaults)
     }

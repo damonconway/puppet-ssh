@@ -16,10 +16,10 @@
 #
 class ssh::ssh_cfg {
 
-  $config_manage    = $ssh::real_config_manage
+  $config_manage    = $ssh::config_manage
   $ssh_config       = $ssh::ssh_config
 
-  if $config_manage == true {
+  if str2bool($config_manage) {
     if is_hash($ssh_config) {
       create_resources('ssh_config', $ssh_config)
     }

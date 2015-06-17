@@ -16,13 +16,13 @@
 #
 class ssh::params {
 
-  $config_manage     = true
+  $config_manage     = 'true'
   $client_pkg_ensure = 'present'
   $install_options   = undef
-  $install_manage    = true
+  $install_manage    = 'true'
   $server_pkg_ensure = 'present'
   $service_ensure    = 'running'
-  $service_maange    = true
+  $service_maange    = 'true'
   $ssh_config        = undef
   $sshd_config       = undef
   $sshd_config_match = undef

@@ -20,7 +20,7 @@ class ssh::service {
   $service_manage = $ssh::service_manage
   $service_name   = $ssh::service_name
 
-  if $service_manage {
+  if str2bool($service_manage) {
     service { 'sshd_service':
       ensure => $service_ensure,
       name   => $service_name,

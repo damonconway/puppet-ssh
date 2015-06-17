@@ -24,7 +24,6 @@ class ssh::params {
   $service_ensure    = 'running'
   $service_maange    = true
   $ssh_config        = undef
-  $ssh_config_match  = undef
   $sshd_config       = undef
   $sshd_config_match = undef
 

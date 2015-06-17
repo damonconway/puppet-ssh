@@ -90,7 +90,6 @@ class ssh (
   $service_manage    = $ssh::params::service_manage,
   $service_notify    = $ssh::params::service_notify,
   $ssh_config        = $ssh::params::ssh_config,
-  $ssh_config_match  = $ssh::params::ssh_config_match,
   $sshd_config       = $ssh::params::sshd_config,
   $sshd_config_match = $ssh::params::sshd_config_match,
 ) inherits ssh::params {

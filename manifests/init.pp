@@ -128,9 +128,9 @@ class ssh (
     fail("${name}::serivce_manage should be a boolean or string.")
   }
 
-  Class['ssh::install']->
-  Class['ssh::sshd_cfg']->
-  Class['ssh::ssh_cfg']->
+  Class['ssh::install'] ->
+  Class['ssh::sshd_cfg'] ->
+  Class['ssh::ssh_cfg'] ->
   Class['ssh::service']
 
 }

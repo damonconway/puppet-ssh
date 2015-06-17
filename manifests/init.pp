@@ -88,6 +88,7 @@ class ssh (
   $server_pkg_ensure = $ssh::params::server_pkg_ensure,
   $service_ensure    = $ssh::params::service_ensure,
   $service_manage    = $ssh::params::service_manage,
+  $service_notify    = $ssh::params::service_notify,
   $ssh_config        = $ssh::params::ssh_config,
   $ssh_config_match  = $ssh::params::ssh_config_match,
   $sshd_config       = $ssh::params::sshd_config,
@@ -99,7 +100,6 @@ class ssh (
   include ssh::ssh_cfg
   include ssh::sshd_cfg
 
-  $defaults     = $ssh::params::defaults
   $service_name = $ssh::params::service_name
 
   # Check all our inputs
@@ -126,6 +126,20 @@ class ssh (
     $real_service_manage = str2bool($service_manage)
   } else {
     fail("${name}::serivce_manage should be a boolean or string.")
+  }
+
+  if is_bool($service_notify) {
+    $real_service_notify = $service_manage
+  } elsif is_string($service_notify) {
+    $real_service_notify = str2bool($service_manage)
+  } else {
+    fail("${name}::serivce_notify should be a boolean or string.")
+  }
+
+  if $real_service_notify {
+    $defaults = {}
+  } else {
+    $defaults = $ssh::params::defaults
   }
 
   Class['ssh::install'] ->

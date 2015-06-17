@@ -16,19 +16,19 @@
 #
 class ssh::sshd_cfg {
 
-  $config_manage  = $ssh::real_config_manage
-  $defaults       = $ssh::defaults
-  $sshd_cfg       = $ssh::sshd_cfg
-  $sshd_cfg_match = $ssh::sshd_cfg_match
+  $config_manage     = $ssh::real_config_manage
+  $defaults          = $ssh::defaults
+  $sshd_config       = $ssh::sshd_config
+  $sshd_config_match = $ssh::sshd_config_match
 
 
   if $config_manage {
-    if $sshd_cfg {
-      create_resources(ssh_config, $sshd_cfg, $defaults)
+    if $sshd_config {
+      create_resources(sshd_config, $sshd_config, $defaults)
     }
 
-    if $sshd_cfg_match {
-      create_resources(ssh_config_match, $sshd_cfg_match, $defaults)
+    if $sshd_config_match {
+      create_resources(sshd_config_match, $sshd_config_match, $defaults)
     }
   }
   

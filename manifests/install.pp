@@ -16,16 +16,25 @@
 #
 class ssh::install {
 
-  package { 'ssh_client_pkg':
-    ensure          => $ssh::client_pkg_ensure,
-    name            => $client_pkg,
-    install_options => $ssh::install_options,
-  }
-  
-  package { 'ssh_server_pkg':
-    ensure          => $ssh::server_pkg_ensure,
-    name            => $server_pkg,
-    install_options => $ssh::install_options,
+  $client_pkg        = $ssh::client_pkg
+  $client_pkg_ensure = $ssh::client_pkg_ensure
+  $install_options   = $ssh::install_options
+  $install_manage    = $ssh::install_manage
+  $server_pkg        = $ssh::server_pkg
+  $server_pkg_ensure = $ssh::server_pkg_ensure
+
+  if $install_manage {
+    package { 'ssh_client_pkg':
+      ensure          => $client_pkg_ensure,
+      name            => $client_pkg,
+      install_options => $install_options,
+    }
+
+    package { 'ssh_server_pkg':
+      ensure          => $server_pkg_ensure,
+      name            => $server_pkg,
+      install_options => $install_options,
+    }
   }
   
 }

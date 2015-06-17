@@ -19,6 +19,7 @@ class ssh::params {
   $config_manage     = true
   $client_pkg_ensure = 'present'
   $install_options   = undef
+  $install_manage    = true
   $server_pkg_ensure = 'present'
   $service_ensure    = 'running'
   $service_maange    = true

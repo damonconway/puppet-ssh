@@ -22,11 +22,11 @@ class ssh::ssh_cfg {
 
   if $config_manage == true {
     if is_hash($ssh_config) {
-      create_resources(ssh_config, $ssh_config)
+      create_resources('ssh_config', $ssh_config)
     }
 
     if is_hash($ssh_config_match) {
-      create_resources(ssh_config_match, $ssh_config_match)
+      create_resources('ssh_config_match', $ssh_config_match)
     }
   }
   

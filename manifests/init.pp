@@ -102,6 +102,8 @@ class ssh (
   $defaults     = $ssh::params::defaults
   $service_name = $ssh::params::service_name
 
+  # Check all our inputs
+  #
   if is_bool($config_manage) {
     $real_config_manage = $config_manage
   } elsif is_string($config_manage) {
@@ -110,8 +112,14 @@ class ssh (
     fail("${name}::config_manage should be a boolean or string.")
   }
  
-  # Check all our inputs
-  #
+  if is_bool($install_manage) {
+    $real_install_manage = $install_manage
+  } elsif is_string($install_manage) {
+    $real_install_manage = str2bool($install_manage)
+  } else {
+    fail("${name}::install_manage should be a boolean or string.")
+  }
+ 
   if is_bool($service_manage) {
     $real_service_manage = $service_manage
   } elsif is_string($service_manage) {
@@ -120,22 +128,6 @@ class ssh (
     fail("${name}::serivce_manage should be a boolean or string.")
   }
 
-  if $ssh_config {
-    validate_hash($sshd_config_match)
-  }
-  
-  if $ssh_config_match {
-    validate_hash($sshd_config_match)
-  }
-  
-  if $sshd_config {
-    validate_hash($sshd_config)
-  }
-  
-  if $sshd_config_match {
-    validate_hash($sshd_config_match)
-  }
-  
   Class['ssh::install']->
   Class['ssh::sshd_cfg']->
   Class['ssh::ssh_cfg']->

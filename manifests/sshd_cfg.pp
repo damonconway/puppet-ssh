@@ -22,13 +22,13 @@ class ssh::sshd_cfg {
   $sshd_config_match = $ssh::sshd_config_match
 
 
-  if $config_manage {
-    if $sshd_config {
-      create_resources(sshd_config, $sshd_config, $defaults)
+  if $config_manage == true {
+    if is_hash($sshd_config) {
+      create_resources('sshd_config', $sshd_config, $defaults)
     }
 
-    if $sshd_config_match {
-      create_resources(sshd_config_match, $sshd_config_match, $defaults)
+    if is_hash($sshd_config_match) {
+      create_resources('sshd_config_match', $sshd_config_match, $defaults)
     }
   }
   

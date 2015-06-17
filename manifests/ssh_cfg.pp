@@ -20,12 +20,12 @@ class ssh::ssh_cfg {
   $ssh_config       = $ssh::ssh_config
   $ssh_config_match = $ssh::ssh_config_match
 
-  if $config_manage {
-    if $ssh_config {
+  if $config_manage == true {
+    if is_hash($ssh_config) {
       create_resources(ssh_config, $ssh_config)
     }
 
-    if $ssh_config_match {
+    if is_hash($ssh_config_match) {
       create_resources(ssh_config_match, $ssh_config_match)
     }
   }

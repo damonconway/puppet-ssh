@@ -8,11 +8,6 @@
 # parameter you can give to pass to create_resources.
 #
 # Parameters:
-#   $config_manage:
-#       Determines if we should apply config changes
-#       Default: true
-#       Type: boolean
-#
 #   $client_pkg:
 #       Name of the client package to manage
 #       Default: OS Dependent
@@ -22,6 +17,11 @@
 #       String to pass to ensure param on client package
 #       Default: present
 #       Type: string
+#
+#   $config_manage:
+#       Determines if we should apply config changes
+#       Default: true
+#       Type: boolean
 #
 #   $install_options:
 #       String to pass to install_options param on packages
@@ -79,9 +79,9 @@
 #     include ::ssh
 #
 class ssh (
-  $config_manage     = $ssh::params::config_manage,
   $client_pkg        = $ssh::params::client_pkg,
   $client_pkg_ensure = $ssh::params::client_pkg_ensure,
+  $config_manage     = $ssh::params::config_manage,
   $install_options   = $ssh::params::install_options,
   $install_manage    = $ssh::params::install_manage,
   $server_pkg        = $ssh::params::server_pkg,

@@ -22,8 +22,9 @@ class ssh::service {
 
   if str2bool($service_manage) {
     service { 'sshd_service':
-      ensure => $service_ensure,
-      name   => $service_name,
+      ensure    => $service_ensure,
+      name      => $service_name,
+      subscribe => File['/etc/ssh/sshd_config'],
     }
   }
   

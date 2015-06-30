@@ -22,7 +22,7 @@ class ssh::params {
   $install_manage    = 'true'
   $server_pkg_ensure = 'present'
   $service_ensure    = 'running'
-  $service_maange    = 'true'
+  $service_manage    = 'true'
   $ssh_config        = undef
   $sshd_config       = undef
   $sshd_config_match = undef

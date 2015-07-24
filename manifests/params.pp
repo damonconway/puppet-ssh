@@ -25,10 +25,10 @@ class ssh::params {
   $server_pkg_ensure     = 'present'
   $service_ensure        = 'running'
   $service_manage        = 'true'
-  $ssh_config            = hiera('ssh_config', undef)
-  $sshd_config           = hiera('sshd_config', undef)
-  $sshd_config_match     = hiera('sshd_config_match', undef)
-  $sshd_config_subsystem = hiera('sshd_config_subsystem', undef)
+  $ssh_config            = undef
+  $sshd_config           = undef
+  $sshd_config_match     = undef
+  $sshd_config_subsystem = undef
 
   case $::osfamily {
     'RedHat' : {

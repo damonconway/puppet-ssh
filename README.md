@@ -27,6 +27,7 @@ Dependencies
 ------------
 
   * [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)
+  * [herculesteam/augeasproviders_core](https://forge.puppetlabs.com/herculesteam/augeasproviders_core)
   * [herculesteam/augeasproviders_ssh](https://forge.puppetlabs.com/herculesteam/augeasproviders_ssh)
 
 Usage
@@ -67,7 +68,7 @@ To pass some configuration options do:
         },
         'PermitRootLogin' => {
             'ensure' => 'present',
-            'value'  => 'yes',
+            'value'  => 'no',
         },
     }
 
@@ -114,10 +115,6 @@ This param determines if we should manage the service resource for the server (d
 
 This param contains a hash of ssh_config resources (default is undef).
 
-####`ssh_config_match`
-
-This param contains a hash of ssh_config_match resources (default is undef).
-
 ####`sshd_config`
 
 This param contains a hash of sshd_config resources (default is undef).
@@ -125,6 +122,10 @@ This param contains a hash of sshd_config resources (default is undef).
 ####`sshd_config_match`
 
 This param contains a hash of sshd_config_match resources (default is undef).
+
+####`sshd_config_subsystem`
+
+This param contains a hash of sshd_config_subsystem resources (default is undef).
 
 Limitations
 -----------

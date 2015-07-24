@@ -40,36 +40,36 @@ To simply have the module manage the packages and sshd service do:
 To pass some configuration options do:
 
     $ssh_cfg = {
-        'ForwardAgent' => {
-            'ensure' => 'present',
-            'value'  => 'yes',
-        },
-        'ForwardAgent on example.net' => {
-            'ensure' => 'present',
-            'key'    => 'ForwardAgent',
-            'host'   => 'secure.example.net',
-            'value'  => 'no'
-        },
-        'X11Forwarding' => {
-            'ensure' => 'present',
-            'host'   => 'example.net',
-            'value'  => 'yes',
-        },
+      'ForwardAgent' => {
+        'ensure' => 'present',
+        'value'  => 'yes',
+      },
+      'ForwardAgent on example.net' => {
+        'ensure' => 'present',
+        'key'    => 'ForwardAgent',
+        'host'   => 'secure.example.net',
+        'value'  => 'no'
+      },
+      'X11Forwarding' => {
+        'ensure' => 'present',
+        'host'   => 'example.net',
+        'value'  => 'yes',
+      },
     }
 
     $sshd_cfg = {
-        'AllowGroups' => {
-            'ensure' => 'present',
-            'value'  => ['sshgroups", "admins"],
-        },
-        'Protocol' => {
-            'ensure' => 'present',
-            'value'  => '2',
-        },
-        'PermitRootLogin' => {
-            'ensure' => 'present',
-            'value'  => 'no',
-        },
+      'AllowGroups' => {
+        'ensure' => 'present',
+        'value'  => ['sshgroups", "admins"],
+      },
+      'Protocol' => {
+        'ensure' => 'present',
+        'value'  => '2',
+      },
+      'PermitRootLogin' => {
+        'ensure' => 'present',
+        'value'  => 'no',
+      },
     }
 
     class { '::ssh':

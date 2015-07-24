@@ -1,18 +1,20 @@
 # Class: ssh::params
 #
-# This class does stuff that you describe here
+# This class contains defaults for the module.
 #
 # Parameters:
-#   $parameter:
-#       this global variable is used to do things
+#   This class takes no parameters
 #
 # Actions:
-#   Actions should be described here
+#   Sets default values
 #
 # Requires:
-#   - Package["foopackage"]
+#   None
 #
 # Sample Usage:
+#   include ssh::params
+#
+#   class ssh inherits ssh::params { }
 #
 class ssh::params {
 

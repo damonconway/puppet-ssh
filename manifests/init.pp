@@ -53,11 +53,6 @@
 #       Default: undef
 #       Type: Hash
 #
-#   $ssh_config_match:
-#       Hash of options ot pass to ssh_config_match resources
-#       Default: undef
-#       Type: Hash
-#
 #   $sshd_config:
 #       Hash of options ot pass to sshd_config resources
 #       Default: undef
@@ -65,6 +60,11 @@
 #
 #   $sshd_config_match:
 #       Hash of options ot pass to sshd_config_match resources
+#       Default: undef
+#       Type: Hash
+#
+#   $sshd_config_subsystem:
+#       Hash of options ot pass to ssh_config_subsystem resources
 #       Default: undef
 #       Type: Hash
 #

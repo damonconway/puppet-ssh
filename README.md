@@ -20,8 +20,8 @@ Currently, the module supports passing a config hash to the following 4 resource
 
   * ssh_config
   * sshd_config
-  * ssh_config_match
   * sshd_config_match
+  * sshd_config_subsystem
 
 Dependencies
 ------------

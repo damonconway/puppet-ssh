@@ -16,10 +16,11 @@
 #
 class ssh::sshd_cfg {
 
-  $config_manage     = $ssh::config_manage
-  $defaults          = $ssh::defaults
-  $sshd_config       = $ssh::sshd_config
-  $sshd_config_match = $ssh::sshd_config_match
+  $config_manage         = $ssh::config_manage
+  $defaults              = $ssh::defaults
+  $sshd_config           = $ssh::sshd_config
+  $sshd_config_match     = $ssh::sshd_config_match
+  $sshd_config_subsystem = $ssh::sshd_config_subsystem
 
   file { '/etc/ssh/sshd_config':
     ensure => 'file',
@@ -35,6 +36,10 @@ class ssh::sshd_cfg {
 
     if is_hash($sshd_config_match) {
       create_resources('sshd_config_match', $sshd_config_match)
+    }
+
+    if is_hash($sshd_config_subsystem) {
+      create_resources('sshd_config_subsystem', $sshd_config_subsystem)
     }
   }
   

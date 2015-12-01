@@ -68,9 +68,9 @@ class profile::ssh inherits profile::params {
 
   # Always enforce the bastion and sh configs
   $sshd_cfg = $::role ? {
-    'bastion' => mysql_deepmerge($def_sshd_config, $sshd_config_h, $bastion_cfg, $allow_groups),
-    'sh'      => mysql_deepmerge($def_sshd_config, $sshd_config_h, $sh_cfg, $allow_groups),
-    default   => mysql_deepmerge($def_sshd_config, $sshd_config_h, $allow_groups),
+    'bastion' => deep_merge($def_sshd_config, $sshd_config_h, $bastion_cfg, $allow_groups),
+    'sh'      => deep_merge($def_sshd_config, $sshd_config_h, $sh_cfg, $allow_groups),
+    default   => deep_merge($def_sshd_config, $sshd_config_h, $allow_groups),
   }
 
   class { '::ssh':

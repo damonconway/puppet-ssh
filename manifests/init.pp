@@ -95,10 +95,10 @@ class ssh (
   $sshd_config_subsystem = $ssh::params::sshd_config_subsystem,
 ) inherits ssh::params {
 
-  include ssh::install
-  include ssh::service
-  include ssh::ssh_cfg
-  include ssh::sshd_cfg
+  contain ssh::install
+  contain ssh::service
+  contain ssh::ssh_cfg
+  contain ssh::sshd_cfg
 
   $service_name = $ssh::params::service_name
 

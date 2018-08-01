@@ -102,12 +102,6 @@ class ssh (
   contain ssh::ssh_cfg
   contain ssh::sshd_cfg
 
-
-  $defaults = $service_notify ? {
-    false   => {},
-    default => { 'notify' => Service['sshd_service'], },
-  }
-
   Class['ssh::install'] ->
   Class['ssh::sshd_cfg'] ->
   Class['ssh::ssh_cfg'] ->

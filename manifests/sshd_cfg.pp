@@ -9,10 +9,14 @@
 class ssh::sshd_cfg {
 
   $config_manage         = $ssh::config_manage
-  $defaults              = $ssh::defaults
   $sshd_config           = $ssh::sshd_config
   $sshd_config_match     = $ssh::sshd_config_match
   $sshd_config_subsystem = $ssh::sshd_config_subsystem
+
+  $defaults = $service_notify ? {
+    false   => {},
+    default => { 'notify' => Service['sshd_service'], },
+  }
 
   file { '/etc/ssh/sshd_config':
     ensure => 'file',
@@ -25,7 +29,7 @@ class ssh::sshd_cfg {
     if $sshd_config {
       $sshd_config.each |$cfg,$opts| {
         sshd_config { $cfg:
-          * => $opts,
+          * => $opts + $defaults,
         }
       }
     }
@@ -33,7 +37,7 @@ class ssh::sshd_cfg {
     if $sshd_config_match {
       $sshd_config_match.each |$cfg,$opts| {
         sshd_config_match { $cfg:
-          * => $opts,
+          * => $opts + $defaults,
         }
       }
     }
@@ -41,7 +45,7 @@ class ssh::sshd_cfg {
     if $sshd_config_subsystem {
       $sshd_config_subsystem.each |$cfg,$opts| {
         sshd_config_subsystem { $cfg:
-          * => $opts,
+          * => $opts + $defaults,
         }
       }
     }

@@ -1,6 +1,6 @@
 {
   "name": "dconway-ssh",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Damon Conway <vstraylight@gmail.com>",
   "summary": "Install and configure ssh",
   "license": "Apache-2.0",

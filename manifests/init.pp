@@ -80,21 +80,21 @@
 #     include ::ssh
 #
 class ssh (
-  String $client_pkg                      = $ssh::params::client_pkg,
-  String $client_pkg_ensure               = 'present',
-  Boolean $config_manage                  = true,
-  Optional[String] $install_options       = undef,
-  Boolean $install_manage                 = true,
-  String $server_pkg                      = $ssh::params::server_pkg,
-  String $server_pkg_ensure               = 'present',
-  Stdlib::Ensure::Service $service_ensure = 'running',
-  Boolean $service_manage                 = true,
-  String $service_name                    = $ssh::params::service_name,
-  Boolean $service_notify                 = true,
-  Optional[Hash] $ssh_config              = undef,
-  Optional[Hash] $sshd_config             = undef,
-  Optional[Hash] $sshd_config_match       = undef,
-  Optional[Hash] $sshd_config_subsystem   = undef,
+  String $client_pkg                        = $ssh::params::client_pkg,
+  String $client_pkg_ensure                 = 'present',
+  Boolean $config_manage                    = true,
+  Optional[String] $install_options         = undef,
+  Boolean $install_manage                   = true,
+  String $server_pkg                        = $ssh::params::server_pkg,
+  String $server_pkg_ensure                 = 'present',
+  Enum['stopped','running'] $service_ensure = 'running',
+  Boolean $service_manage                   = true,
+  String $service_name                      = $ssh::params::service_name,
+  Boolean $service_notify                   = true,
+  Optional[Hash] $ssh_config                = undef,
+  Optional[Hash] $sshd_config               = undef,
+  Optional[Hash] $sshd_config_match         = undef,
+  Optional[Hash] $sshd_config_subsystem     = undef,
 ) inherits ssh::params {
 
   contain ssh::install

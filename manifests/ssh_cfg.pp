@@ -1,27 +1,22 @@
 # Class: ssh::ssh_cfg
 #
-# This class does stuff that you describe here
-#
-# Parameters:
-#   $parameter:
-#       this global variable is used to do things
+# Private class to create ssh_config resources.
 #
 # Actions:
-#   Actions should be described here
-#
-# Requires:
-#   - Package["foopackage"]
-#
-# Sample Usage:
+#   * Creates ssh_config resources
 #
 class ssh::ssh_cfg {
 
   $config_manage    = $ssh::config_manage
   $ssh_config       = $ssh::ssh_config
 
-  if str2bool($config_manage) {
-    if is_hash($ssh_config) {
-      create_resources('ssh_config', $ssh_config)
+  if $config_manage {
+    if $ssh_config {
+      $ssh_config.each |$cfg,$opts| {
+        ssh_config { $cfg:
+          * => $opts,
+        }
+      }
     }
   }
   

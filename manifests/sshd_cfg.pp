@@ -1,18 +1,10 @@
 # Class: ssh::sshd_cfg
 #
-# This class does stuff that you describe here
-#
-# Parameters:
-#   $parameter:
-#       this global variable is used to do things
+# Private class to create sshd_config, sshd_config_match, and
+# sshd_config_subysystem resources from given hashes.
 #
 # Actions:
-#   Actions should be described here
-#
-# Requires:
-#   - Package["foopackage"]
-#
-# Sample Usage:
+#   * Creates ssh_config* resources
 #
 class ssh::sshd_cfg {
 
@@ -29,17 +21,29 @@ class ssh::sshd_cfg {
     mode   => '0600',
   }
 
-  if str2bool($config_manage) {
-    if is_hash($sshd_config) {
-      create_resources('sshd_config', $sshd_config)
+  if $config_manage {
+    if $sshd_config {
+      $sshd_config.each |$cfg,$opts| {
+        sshd_config { $cfg:
+          * => $opts,
+        }
+      }
     }
 
-    if is_hash($sshd_config_match) {
-      create_resources('sshd_config_match', $sshd_config_match)
+    if $sshd_config_match {
+      $sshd_config_match.each |$cfg,$opts| {
+        sshd_config_match { $cfg:
+          * => $opts,
+        }
+      }
     }
 
-    if is_hash($sshd_config_subsystem) {
-      create_resources('sshd_config_subsystem', $sshd_config_subsystem)
+    if $sshd_config_subsystem {
+      $sshd_config_subsystem.each |$cfg,$opts| {
+        sshd_config_subsystem { $cfg:
+          * => $opts,
+        }
+      }
     }
   }
   

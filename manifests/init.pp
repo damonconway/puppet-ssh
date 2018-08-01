@@ -69,30 +69,32 @@
 #       Type: Hash
 #
 # Actions:
-#   Actions should be described here
+#   * Install ssh package
+#   * Configure ssh and sshd
 #
 # Requires:
-#   - Package["foopackage"]
+#   - puppetlabs/stdlib
 #
 # Sample Usage:
 #   Simply make sure the packages are installed and the service is running:
 #     include ::ssh
 #
 class ssh (
-  $client_pkg            = $ssh::params::client_pkg,
-  $client_pkg_ensure     = $ssh::params::client_pkg_ensure,
-  $config_manage         = $ssh::params::config_manage,
-  $install_options       = $ssh::params::install_options,
-  $install_manage        = $ssh::params::install_manage,
-  $server_pkg            = $ssh::params::server_pkg,
-  $server_pkg_ensure     = $ssh::params::server_pkg_ensure,
-  $service_ensure        = $ssh::params::service_ensure,
-  $service_manage        = $ssh::params::service_manage,
-  $service_notify        = $ssh::params::service_notify,
-  $ssh_config            = $ssh::params::ssh_config,
-  $sshd_config           = $ssh::params::sshd_config,
-  $sshd_config_match     = $ssh::params::sshd_config_match,
-  $sshd_config_subsystem = $ssh::params::sshd_config_subsystem,
+  String $client_pkg                      = $ssh::params::client_pkg,
+  String $client_pkg_ensure               = 'present',
+  Boolean $config_manage                  = true,
+  Optional[String] $install_options       = undef,
+  Boolean $install_manage                 = true,
+  String $server_pkg                      = $ssh::params::server_pkg,
+  String $server_pkg_ensure               = 'present',
+  Stdlib::Ensure::Service $service_ensure = 'running',
+  Boolean $service_manage                 = true,
+  String $service_name                    = $ssh::params::service_name,
+  Boolean $service_notify                 = true,
+  Optional[Hash] $ssh_config              = undef,
+  Optional[Hash] $sshd_config             = undef,
+  Optional[Hash] $sshd_config_match       = undef,
+  Optional[Hash] $sshd_config_subsystem   = undef,
 ) inherits ssh::params {
 
   contain ssh::install
@@ -100,12 +102,10 @@ class ssh (
   contain ssh::ssh_cfg
   contain ssh::sshd_cfg
 
-  $service_name = $ssh::params::service_name
 
-  if str2bool($service_notify) {
-    $defaults = {}
-  } else {
-    $defaults = $ssh::params::defaults
+  $defaults = $service_notify ? {
+    false   => {},
+    default => { 'notify' => Service['sshd_service'], },
   }
 
   Class['ssh::install'] ->

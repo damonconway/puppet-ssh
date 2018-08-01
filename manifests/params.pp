@@ -18,18 +18,6 @@
 #
 class ssh::params {
 
-  $config_manage         = 'true'
-  $client_pkg_ensure     = 'present'
-  $install_options       = undef
-  $install_manage        = 'true'
-  $server_pkg_ensure     = 'present'
-  $service_ensure        = 'running'
-  $service_manage        = 'true'
-  $ssh_config            = undef
-  $sshd_config           = undef
-  $sshd_config_match     = undef
-  $sshd_config_subsystem = undef
-
   case $::osfamily {
     'RedHat' : {
       $client_pkg   = 'openssh-clients'
@@ -42,8 +30,4 @@ class ssh::params {
     }
   }
   
-  $defaults = {
-    'notify' => Service['sshd_service'],
-  }
-
 }

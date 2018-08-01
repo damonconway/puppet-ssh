@@ -1,18 +1,9 @@
 # Class: ssh::install
 #
-# This class does stuff that you describe here
-#
-# Parameters:
-#   $parameter:
-#       this global variable is used to do things
+# Private class to make sure the ssh packages are installed.
 #
 # Actions:
-#   Actions should be described here
-#
-# Requires:
-#   - Package["foopackage"]
-#
-# Sample Usage:
+#   * install client and server packages
 #
 class ssh::install {
 
@@ -23,13 +14,13 @@ class ssh::install {
   $server_pkg        = $ssh::server_pkg
   $server_pkg_ensure = $ssh::server_pkg_ensure
 
-  if str2bool($ssh::service_notify) {
+  if $ssh::service_notify {
     $service_notify = Service['sshd_service']
   } else {
     $service_notify = undef
   }
 
-  if str2bool($install_manage) {
+  if $install_manage {
     package { 'ssh_client_pkg':
       ensure          => $client_pkg_ensure,
       name            => $client_pkg,

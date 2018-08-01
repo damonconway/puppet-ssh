@@ -12,8 +12,6 @@ ssh
 Overview
 --------
 
-**This module is under development and untested. Use at your own risk.**
-
 The ssh module is designed to manage the ssh packages and service, and leave the configuration to the user. However, if you pass in one or more of the config hashes, the module will use create_resources to pass the hash along to the matching resource provided by herculesteam/augeasproviders_ssh.
 
 Currently, the module supports passing a config hash to the following 4 resources:

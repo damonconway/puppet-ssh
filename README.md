@@ -129,5 +129,8 @@ Limitations
 -----------
 
 **Supported Operating Systems**
+  Note: Only RHEL/CentOS tested thus far.
 
-  * RHEL/CentOS 5,6
+  * RHEL/CentOS/Oracle/Scientific/SLES 5,6,7
+  * Debian 8, 9
+  * Ubuntu 14.04, 16.04, 18.04

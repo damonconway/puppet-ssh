@@ -129,6 +129,7 @@ Limitations
 -----------
 
 **Supported Operating Systems**
+
   Note: Only RHEL/CentOS tested thus far.
 
   * RHEL/CentOS/Oracle/Scientific/SLES 5,6,7

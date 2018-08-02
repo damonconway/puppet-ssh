@@ -7,12 +7,7 @@
 #
 class ssh::install {
 
-  $client_pkg        = $ssh::client_pkg
-  $client_pkg_ensure = $ssh::client_pkg_ensure
-  $install_options   = $ssh::install_options
-  $install_manage    = $ssh::install_manage
-  $server_pkg        = $ssh::server_pkg
-  $server_pkg_ensure = $ssh::server_pkg_ensure
+  $moduli_gen_file = '/var/run/puppet/ssh_moduli_generated'
 
   if $ssh::service_notify {
     $service_notify = Service['sshd_service']
@@ -20,20 +15,42 @@ class ssh::install {
     $service_notify = undef
   }
 
-  if $install_manage {
-    package { 'ssh_client_pkg':
-      ensure          => $client_pkg_ensure,
-      name            => $client_pkg,
-      install_options => $install_options,
-      notify          => $service_notify,
+  package { 'ssh_client_pkg':
+    ensure          => $ssh::client_pkg_ensure,
+    name            => $ssh::client_pkg,
+    install_options => $ssh::install_options,
+    notify          => $service_notify,
+  }
+
+  package { 'ssh_server_pkg':
+    ensure          => $ssh::server_pkg_ensure,
+    name            => $ssh::server_pkg,
+    install_options => $ssh::install_options,
+    notify          => $service_notify,
+  }
+
+  # Commands from https://stribika.github.io/2015/01/04/secure-secure-shell.html
+  if $ssh::moduli_type {
+    case $ssh::moduli_type {
+      'safe': {
+        $command = "ssh-keygen -G /etc/ssh/moduli.all -b 4096 && \
+        ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all && \
+        mv /etc/ssh/moduli.safe /etc/ssh/moduli && \
+        rm /etc/ssh/moduli.all"
+      }
+
+      default: {
+        $command = "ssh-keygen -G /etc/ssh/moduli.all -b 4096 && \
+        mv /etc/ssh/moduli.all /etc/ssh/moduli"
+      }
     }
 
-    package { 'ssh_server_pkg':
-      ensure          => $server_pkg_ensure,
-      name            => $server_pkg,
-      install_options => $install_options,
-      notify          => $service_notify,
+    exec { "ssh::install - generate /etc/ssh/moduli":
+      command => "$command && touch $moduli_gen_file",
+      creates => $moduli_gen_file,
+      user    => 'root',
+      require => Package['ssh_server_pkg'],
     }
   }
-  
+
 }

@@ -33,6 +33,11 @@
 #       Default: true
 #       Type: Boolean
 #
+#   $moduli_type:
+#       Determines if we should regenerate /etc/ssh/moduli, and if so if we should use all or safe.
+#       Default: undef
+#       Type: Enum['all', 'safe', Undef]
+#
 #   $server_pkg:
 #       Name of the server package to manage
 #       Default: OS Dependent
@@ -90,7 +95,8 @@ class ssh (
   Boolean $config_manage                    = true,
   Optional[String] $install_options         = undef,
   Boolean $install_manage                   = true,
-  Boolean $merge_config = true,
+  Boolean $merge_config                     = true,
+  Enum['all','safe',Undef] $moduli_type     = undef,
   String $server_pkg                        = $ssh::params::server_pkg,
   String $server_pkg_ensure                 = 'present',
   Enum['stopped','running'] $service_ensure = 'running',

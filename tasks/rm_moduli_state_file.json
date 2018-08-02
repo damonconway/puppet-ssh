@@ -1,0 +1,7 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Remove /var/run/puppet/ssh_moduli_generated so the exec to generate /etc/ssh/moduli will run again",
+  "parameters": {
+  }
+}

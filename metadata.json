@@ -5,6 +5,8 @@
   "summary": "Install and configure ssh",
   "license": "Apache-2.0",
   "source": "https://github.com/damonconway/puppet-ssh/",
+  "project_page": "https://github.com/damonconway/puppet-ssh/",
+  "issues_url": "https://github.com/damonconway/puppet-ssh/issues",
   "dependencies": [
 
   ],
@@ -12,24 +14,32 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
+        "5",
+        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
+        "5",
+        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
+        "5",
+        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "Scientific",
       "operatingsystemrelease": [
+        "5",
+        "6",
         "7"
       ]
     }

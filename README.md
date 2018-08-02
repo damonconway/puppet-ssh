@@ -93,6 +93,10 @@ This param determines if we should apply config changes (default is true).
 
 This param holds the install_options value for package resources (default is undef).
 
+####`merge_configs`
+
+Merge all instances of the config hashes using lookup() (default is true).
+
 ####`server_pkg`
 
 The name of the package to manage (default is OS dependent).

@@ -7,10 +7,12 @@
 #
 class ssh::ssh_cfg {
 
-  $config_manage    = $ssh::config_manage
-  $ssh_config       = $ssh::ssh_config
+  $ssh_config = $ssh::merge_config ? {
+    false   => $ssh::ssh_config,
+    default => lookup('ssh::ssh_config',Optional[Hash],'deep',undef),
+  }
 
-  if $config_manage {
+  if $ssh::config_manage {
     if $ssh_config {
       $ssh_config.each |$cfg,$opts| {
         ssh_config { $cfg:

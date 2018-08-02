@@ -11,42 +11,47 @@
 #   $client_pkg:
 #       Name of the client package to manage
 #       Default: OS Dependent
-#       Type: string
+#       Type: String
 #
 #   $client_pkg_ensure:
 #       String to pass to ensure param on client package
 #       Default: present
-#       Type: string
+#       Type: String
 #
 #   $config_manage:
 #       Determines if we should apply config changes
 #       Default: true
-#       Type: boolean
+#       Type: Boolean
 #
 #   $install_options:
 #       String to pass to install_options param on packages
 #       Default: undef
-#       Type: string
+#       Type: String
+#
+#   $merge_configs:
+#       Determines if we should use lookup to get all instances of the config hashes.
+#       Default: true
+#       Type: Boolean
 #
 #   $server_pkg:
 #       Name of the server package to manage
 #       Default: OS Dependent
-#       Type: string
+#       Type: String
 #
 #   $server_pkg_ensure:
 #       String to pass to ensure param on server package
 #       Default: present
-#       Type: string
+#       Type: String
 #
 #   $service_ensure:
 #       String to pass to ensure param on service
 #       Default: running
-#       Type: string
+#       Type: Enum['stopped', 'running']
 #
 #   $service_manage:
 #       Determines if we should manage the sshd service
 #       Default: true
-#       Type: boolean
+#       Type: Boolean
 #
 #   $ssh_config:
 #       Hash of options ot pass to ssh_config resources
@@ -85,6 +90,7 @@ class ssh (
   Boolean $config_manage                    = true,
   Optional[String] $install_options         = undef,
   Boolean $install_manage                   = true,
+  Boolean $merge_config = true,
   String $server_pkg                        = $ssh::params::server_pkg,
   String $server_pkg_ensure                 = 'present',
   Enum['stopped','running'] $service_ensure = 'running',

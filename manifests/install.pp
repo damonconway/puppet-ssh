@@ -7,7 +7,7 @@
 #
 class ssh::install {
 
-  $moduli_gen_file = '/var/lib/puppet/ssh_moduli_generated'
+  $moduli_gen_file = '/var/run/puppet/ssh_moduli_generated'
 
   if $ssh::service_notify {
     $service_notify = Service['sshd_service']

@@ -27,4 +27,4 @@
 # Learn more at: https://puppet.com/docs/bolt/latest/task_metadata.html
 #
 
-rm /var/lib/puppet/ssh_moduli_generated
+rm /var/run/puppet/ssh_moduli_generated

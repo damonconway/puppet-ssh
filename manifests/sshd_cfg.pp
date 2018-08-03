@@ -60,5 +60,5 @@ class ssh::sshd_cfg {
       }
     }
   }
-  
+
 }

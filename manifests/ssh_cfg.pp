@@ -21,5 +21,5 @@ class ssh::ssh_cfg {
       }
     }
   }
-  
+
 }

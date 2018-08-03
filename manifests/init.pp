@@ -114,9 +114,9 @@ class ssh (
   contain ssh::ssh_cfg
   contain ssh::sshd_cfg
 
-  Class['ssh::install'] ->
-  Class['ssh::sshd_cfg'] ->
-  Class['ssh::ssh_cfg'] ->
-  Class['ssh::service']
+  Class['ssh::install']
+  ->Class['ssh::sshd_cfg']
+  ->Class['ssh::ssh_cfg']
+  ->Class['ssh::service']
 
 }

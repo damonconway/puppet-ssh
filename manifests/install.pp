@@ -31,22 +31,14 @@ class ssh::install {
 
   # Commands from https://stribika.github.io/2015/01/04/secure-secure-shell.html
   if $ssh::moduli_type {
-    case $ssh::moduli_type {
-      'safe': {
-        $command = "ssh-keygen -G /etc/ssh/moduli.all -b 4096 && \
-        ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all && \
-        mv /etc/ssh/moduli.safe /etc/ssh/moduli && \
-        rm /etc/ssh/moduli.all"
-      }
+    $command = "ssh-keygen -G /etc/ssh/moduli.all -b 4096 && \
+    ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all && \
+    mv /etc/ssh/moduli.safe /etc/ssh/moduli && \
+    rm /etc/ssh/moduli.all && \
+    touch ${moduli_gen_file}"
 
-      default: {
-        $command = "ssh-keygen -G /etc/ssh/moduli.all -b 4096 && \
-        mv /etc/ssh/moduli.all /etc/ssh/moduli"
-      }
-    }
-
-    exec { "ssh::install - generate /etc/ssh/moduli":
-      command => "$command && touch $moduli_gen_file",
+    exec { 'ssh::install - generate /etc/ssh/moduli':
+      command => $command,
       creates => $moduli_gen_file,
       user    => 'root',
       require => Package['ssh_server_pkg'],

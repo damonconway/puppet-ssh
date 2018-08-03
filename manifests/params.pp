@@ -18,7 +18,7 @@
 #
 class ssh::params {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $client_pkg   = 'openssh-clients'
       $server_pkg   = 'openssh-server'
@@ -32,8 +32,8 @@ class ssh::params {
     }
 
     default: {
-      fail("OS Family $::osfamily is not supported.")
+      fail("OS Family ${facts['os']['family']} is not supported.")
     }
   }
-  
+
 }

@@ -27,5 +27,5 @@ class ssh::service {
       subscribe => File['/etc/ssh/sshd_config'],
     }
   }
-  
+
 }

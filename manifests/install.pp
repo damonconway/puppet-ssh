@@ -30,7 +30,7 @@ class ssh::install {
   }
 
   # Commands from https://stribika.github.io/2015/01/04/secure-secure-shell.html
-  if $ssh::moduli_type {
+  if $ssh::moduli_generate {
     $command = "ssh-keygen -G /etc/ssh/moduli.all -b 4096 && \
     ssh-keygen -T /etc/ssh/moduli.safe -f /etc/ssh/moduli.all && \
     mv /etc/ssh/moduli.safe /etc/ssh/moduli && \

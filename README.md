@@ -97,9 +97,9 @@ This param holds the install_options value for package resources (default is und
 
 Merge all instances of the config hashes using lookup() (default is true).
 
-####`moduli_type`
+####`moduli_generate`
 
-Determine if we should generate /etc/ssh/moduli and if we should use all or safe (default is undef).
+Determine if we should generate a safe /etc/ssh/moduli (default is undef).
 
 ####`server_pkg`
 

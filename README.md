@@ -75,6 +75,37 @@ To pass some configuration options do:
       sshd_config => $sshd_cfg
     }
 
+Using hiera:
+
+common.yaml:
+
+    ---
+    ssh::ssh_cfg:
+      ForwardAgent:
+        ensure: 'present'
+        value: 'yes'
+      ForwardAgent on example.net:
+        ensure: present
+        key: 'ForwardAgent'
+        host: 'secure.example.net'
+        value: 'no'
+      X11Forwarding:
+        ensure: 'present'
+        host: 'example.net'
+        value: 'yes'
+    ssh::sshd_cfg:
+      AllowGroups:
+        ensure: 'present'
+        value:
+          - 'sshgroups'
+          - 'admins'
+      Protocol:
+        ensure: 'present'
+        value: 'no'
+      PermitRootLogin:
+        ensure: 'present'
+        value: 'no'
+
 **parameters within `ssh`:**
 
 ####`client_pkg`
